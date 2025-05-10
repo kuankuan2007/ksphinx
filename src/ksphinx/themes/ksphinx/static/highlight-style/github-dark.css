@@ -1,0 +1,119 @@
+body[data-theme='dark'] pre code.hljs {
+  display: block;
+  overflow-x: auto;
+  padding: 1em;
+}
+body[data-theme='dark'] code.hljs{
+  padding: 3px 5px;
+  background: #0d1117;
+
+}
+/*!
+Theme: GitHub Dark
+Description: Dark theme as seen on github.com
+Author: github.com
+Maintainer: @Hirse
+Updated: 2021-05-15
+
+Outdated base version: https://github.com/primer/github-syntax-dark
+Current colors taken from GitHub's CSS
+*/
+body[data-theme='dark'] .hljs {
+  color: #c9d1d9;
+  background: #0d1117;
+}
+body[data-theme='dark'] .hljs-doctag,
+body[data-theme='dark'] .hljs-keyword,
+body[data-theme='dark'] .hljs-meta .hljs-keyword,
+body[data-theme='dark'] .hljs-template-tag,
+body[data-theme='dark'] .hljs-template-variable,
+body[data-theme='dark'] .hljs-type,
+body[data-theme='dark'] .hljs-variable.language_ {
+  /* prettylights-syntax-keyword */
+  color: #ff7b72;
+}
+body[data-theme='dark'] .hljs-title,
+body[data-theme='dark'] .hljs-title.class_,
+body[data-theme='dark'] .hljs-title.class_.inherited__,
+body[data-theme='dark'] .hljs-title.function_ {
+  /* prettylights-syntax-entity */
+  color: #d2a8ff;
+}
+body[data-theme='dark'] .hljs-attr,
+body[data-theme='dark'] .hljs-attribute,
+body[data-theme='dark'] .hljs-literal,
+body[data-theme='dark'] .hljs-meta,
+body[data-theme='dark'] .hljs-number,
+body[data-theme='dark'] .hljs-operator,
+body[data-theme='dark'] .hljs-variable,
+body[data-theme='dark'] .hljs-selector-attr,
+body[data-theme='dark'] .hljs-selector-class,
+body[data-theme='dark'] .hljs-selector-id {
+  /* prettylights-syntax-constant */
+  color: #79c0ff;
+}
+body[data-theme='dark'] .hljs-regexp,
+body[data-theme='dark'] .hljs-string,
+body[data-theme='dark'] .hljs-meta .hljs-string {
+  /* prettylights-syntax-string */
+  color: #a5d6ff;
+}
+body[data-theme='dark'] .hljs-built_in,
+body[data-theme='dark'] .hljs-symbol {
+  /* prettylights-syntax-variable */
+  color: #ffa657;
+}
+body[data-theme='dark'] .hljs-comment,
+body[data-theme='dark'] .hljs-code,
+body[data-theme='dark'] .hljs-formula {
+  /* prettylights-syntax-comment */
+  color: #8b949e;
+}
+body[data-theme='dark'] .hljs-name,
+body[data-theme='dark'] .hljs-quote,
+body[data-theme='dark'] .hljs-selector-tag,
+body[data-theme='dark'] .hljs-selector-pseudo {
+  /* prettylights-syntax-entity-tag */
+  color: #7ee787;
+}
+body[data-theme='dark'] .hljs-subst {
+  /* prettylights-syntax-storage-modifier-import */
+  color: #c9d1d9;
+}
+body[data-theme='dark'] .hljs-section {
+  /* prettylights-syntax-markup-heading */
+  color: #1f6feb;
+  font-weight: bold;
+}
+body[data-theme='dark'] .hljs-bullet {
+  /* prettylights-syntax-markup-list */
+  color: #f2cc60;
+}
+body[data-theme='dark'] .hljs-emphasis {
+  /* prettylights-syntax-markup-italic */
+  color: #c9d1d9;
+  font-style: italic;
+}
+body[data-theme='dark'] .hljs-strong {
+  /* prettylights-syntax-markup-bold */
+  color: #c9d1d9;
+  font-weight: bold;
+}
+body[data-theme='dark'] .hljs-addition {
+  /* prettylights-syntax-markup-inserted */
+  color: #aff5b4;
+  background-color: #033a16;
+}
+body[data-theme='dark'] .hljs-deletion {
+  /* prettylights-syntax-markup-deleted */
+  color: #ffdcd7;
+  background-color: #67060c;
+}
+body[data-theme='dark'] .hljs-char.escape_,
+body[data-theme='dark'] .hljs-link,
+body[data-theme='dark'] .hljs-params,
+body[data-theme='dark'] .hljs-property,
+body[data-theme='dark'] .hljs-punctuation,
+body[data-theme='dark'] .hljs-tag {
+  /* purposely ignored */
+}

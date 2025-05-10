@@ -1,0 +1,16 @@
+[theme]
+inherit = "basic"
+
+pygments_style = { default = "none" }
+html_static_path = ["static"]
+
+stylesheets = [
+    "ksphinx.css",
+    "highlight-style/github.css",
+    "highlight-style/github-dark.css",
+    "k-sphinx-font.css"
+]
+scripts = ["ksphinx.js", "highlight.min.js"]
+
+[options]
+show_ksphinx = "true"

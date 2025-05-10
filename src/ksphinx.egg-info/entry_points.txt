@@ -1,0 +1,2 @@
+[sphinx.html_themes]
+ksphinx = ksphinx

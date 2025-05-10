@@ -1,0 +1,20 @@
+Metadata-Version: 2.4
+Name: ksphinx
+Version: 0.1.0
+Summary: A custom html theme for sphinx used in kuankuan2007's projects.
+Author-email: kuankuan <2163826131@qq.com>
+License-Expression: MulanPSL-2.0
+Project-URL: Repository, https://github.com/kuankuan2007/ksphinx
+Project-URL: Issues, https://github.com/kuankuan2007/ksphinx/issues
+Keywords: sphinx,theme
+Classifier: Natural Language :: English
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: Developers
+Classifier: Programming Language :: Python :: 3
+Classifier: Operating System :: MacOS
+Classifier: Operating System :: POSIX :: Linux
+Classifier: Operating System :: Microsoft :: Windows
+Classifier: Framework :: Sphinx :: Theme
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Dynamic: license-file
