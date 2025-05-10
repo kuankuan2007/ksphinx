@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "ksphinx"
-version = "0.1.0"
+version = "0.1.1"
 description = "A custom html theme for sphinx used in kuankuan2007's projects."
 authors = [
     { name = "kuankuan", email = "2163826131@qq.com" },
