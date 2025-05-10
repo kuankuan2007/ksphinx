@@ -76,6 +76,13 @@ body[data-menu-fold='true'] div.sphinxsidebar {
 body[data-menu-fold='true'] div.documentwrapper {
   padding-left: 2em;
 }
+@media (max-width: 50em) {
+  div.sphinxsidebar{
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+  }
+}
 div.sphinxsidebar ul {
   padding: 0;
   margin: 0;
@@ -257,6 +264,7 @@ button#menu-fold-button {
   left: 0;
   top: 0;
   margin: 0.3em;
+  z-index: 2;
 }
 button#theme-button .theme-button-inner div,
 button#menu-fold-button .menu-fold-button-inner div {
