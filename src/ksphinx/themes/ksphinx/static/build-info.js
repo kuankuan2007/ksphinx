@@ -67,7 +67,7 @@ const DomMap = {
   'dotBuildInfoFile': (data) => toPreCode(data),
 };
 (async () => {
-  const info = await (await fetch('/buildInfo.json')).json();
+  const info = await (await fetch('/build-info.json')).json();
   info['dotBuildInfoFile'] = fetch('/.buildinfo').then((res) => res.text());
   const main = document.getElementById('build-info-content');
   
