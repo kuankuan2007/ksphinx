@@ -318,3 +318,11 @@ pre.code-copy-button:focus {
   color: var(--active-color);
   border-color: var(--active-color);
 }
+
+span.versionmodified{
+  color: yellow;
+  font-weight: bold;
+}
+div.versionchanged,div.versionadded, div.deprecated{
+  color: var(--active-color);
+}
