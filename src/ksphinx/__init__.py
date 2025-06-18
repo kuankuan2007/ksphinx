@@ -9,7 +9,7 @@ def __init_version():
         assert '.' not in __name__
         from importlib.metadata import version
         __version__ = version(__name__)
-    except ImportError:
+    except:
         pass
 __init_version()
 THEME_PATH = (Path(__file__).parent / "themes" / "ksphinx").resolve()
