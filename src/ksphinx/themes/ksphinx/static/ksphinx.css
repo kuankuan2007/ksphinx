@@ -1,11 +1,23 @@
-body {
+:root {
   font-family: Fira Code, Microsoft Yahei, sans-serif;
 }
+
+@media screen and (max-width: 15cm) {
+  :root {
+    font-size: 3.5mm;
+  }
+}
+
+@media screen and (min-width: 15cm) {
+  :root {
+    font-size: 16px;
+  }
+}
+
 :root,
 body {
   margin: 0;
   padding: 0;
-  font-size: 1.1em;
 }
 body {
   --color: #111111;
@@ -63,7 +75,6 @@ div.documentwrapper h6 {
   margin-left: -1rem;
 }
 div.sphinxsidebar {
-  overflow: auto;
   top: 0;
   margin: 0;
   padding: 0;
@@ -71,8 +82,21 @@ div.sphinxsidebar {
   max-width: 30vw;
   min-width: 18vw;
   border-right: solid 0.1em var(--color);
-  padding: 0 1em;
+  padding: 1em;
   font-size: 0.8em;
+}
+div.sphinxsidebarwrapper {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  padding-left: 0.5em;
+}
+div.sphinxsidebarwrapper > * {
+  flex: 0 0 auto;
+}
+div.sphinxsidebarwrapper > .localtoc {
+  flex: 1 1 0;
+  overflow: auto;
 }
 body[data-menu-fold='true'] div.sphinxsidebar {
   display: none;
@@ -81,7 +105,7 @@ body[data-menu-fold='true'] div.documentwrapper {
   padding-left: 2em;
 }
 @media (max-width: 50em) {
-  div.sphinxsidebar{
+  div.sphinxsidebar {
     position: absolute;
     inset: 0;
     z-index: 1;
@@ -120,12 +144,7 @@ div.sphinxsidebarwrapper div.top-line div {
   flex: 0 1 auto;
   text-decoration: none;
 }
-div.sphinxsidebarwrapper > * {
-  margin-left: 1em;
-}
-div.sphinxsidebarwrapper > * > h3 {
-  margin-left: -1em;
-}
+
 div.related {
   position: sticky;
   top: 0;
@@ -153,7 +172,7 @@ div.related > div > ul {
   padding: 0;
   overflow-x: auto;
 }
-div.related > div > ul *{
+div.related > div > ul * {
   text-wrap: nowrap;
   white-space: nowrap;
 }
@@ -175,7 +194,6 @@ div.footer p {
 form {
   display: flex;
   align-items: stretch;
-  padding: ;
 }
 form.search input,
 form.search button {
@@ -204,6 +222,7 @@ table * {
 dt:target,
 span.highlighted {
   border: solid 0.1em var(--active-color);
+  margin-inline-start: 1em;
   background: unset;
 }
 .search-page-form * {
@@ -222,10 +241,12 @@ button {
   margin-left: 0.2em;
   color: var(--active-color);
   opacity: 0.3;
+  transition: 0.3s;
 }
 .headerlink:hover,
 .headerlink:active {
   opacity: 1;
+  transform: scale(1.3);
 }
 ::-webkit-scrollbar {
   width: 0.5em;
@@ -270,10 +291,9 @@ button#menu-fold-button {
   margin: none;
   padding: none;
   color: var(--color);
-
 }
 button#theme-button:hover,
-button#menu-fold-button:hover{
+button#menu-fold-button:hover {
   color: var(--active-color);
 }
 button#menu-fold-button {
@@ -312,6 +332,10 @@ body[data-menu-fold='false']
 }
 pre {
   position: relative;
+  background: var(--bg-color);
+}
+pre code.hljs {
+  border-radius: 0.3em 0 0.3em 0.3em;
 }
 pre .code-copy-button {
   position: absolute;
@@ -338,11 +362,13 @@ pre.code-copy-button:focus {
   font-size: 0.9em;
 }
 
-span.versionmodified{
+span.versionmodified {
   color: var(--strong-color);
   font-weight: bold;
 }
-div.versionchanged,div.versionadded, div.deprecated{
+div.versionchanged,
+div.versionadded,
+div.deprecated {
   background-color: var(--em-bg-color);
   padding: 0.5em;
   border-radius: 0.5em;
@@ -350,22 +376,26 @@ div.versionchanged,div.versionadded, div.deprecated{
   margin-block-end: 1em;
   width: fit-content;
 }
-dl div.versionchanged,dl div.versionadded, dl div.deprecated{
+dl div.versionchanged,
+dl div.versionadded,
+dl div.deprecated {
   padding-inline-start: 1.5em;
   text-indent: -1em;
   margin-inline-start: -1.5em;
 }
-div.versionchanged p,div.versionadded p, div.deprecated p{
+div.versionchanged p,
+div.versionadded p,
+div.deprecated p {
   margin: 0;
 }
-.field-list dd.field-odd{
+.field-list dd.field-odd {
   margin-inline-start: 0.5em;
 }
-dl.py{
+dl.py {
   margin-block-start: 2em;
   margin-block-end: 2em;
 }
-p{
+p {
   margin-block-end: 0.6em;
   margin-block-start: 0.6em;
 }
