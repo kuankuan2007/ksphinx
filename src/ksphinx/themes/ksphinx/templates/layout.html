@@ -22,27 +22,27 @@
           <li class="nav-item nav-item-0"><a href="{{ pathto(root_doc)|e }}">{{ shorttitle|e }}</a></li><li>/</li>
           {%- endblock %}
           {%- for parent in parents %}
-          <li class="nav-item nav-item-{{ loop.index }}"><a href="{{ parent.link|e }}" {% if loop.last %}{{ accesskey("U") }}{% endif %}>{{ parent.title }}</a></li><li>/</li>
+          <li class="nav-item nav-item-{{ loop.index }}"><a href="{{ parent.link|e }}" {% if loop.last %}{{ accesskey("U") }}{% endif %}>{{ parent.title }}</a></li><li class="related-gap">/</li>
           {%- endfor %}
           <li class="nav-item nav-item-this"><a href="{{ link|e }}">{{ title }}</a></li>
           {%- block relbaritems %} {% endblock %}
         </ul>
-        <div>|</div>
+        <div class="related-gap">|</div>
         <ul class="right">
           {%- for rellink in rellinks %}
-          <li class="right">
+          <li>
             <a href="{{ pathto(rellink[0])|e }}" title="{{ rellink[1]|striptags|e }}"
               {{ accesskey(rellink[2]) }}>{{ rellink[3] }}
             </a>
           </li>
-          <li class="right">|</li> 
+          <li class="related-gap">|</li> 
           {%- endfor %}
-          <li class="right">
+          <li>
             <a href="/build-info" title="Build Info"
               >Build Info</a>
         </ul>
-          <button type="button" id="theme-button">
-            <div class="theme-button-inner">
+          <button type="button" id="theme-button" class="icon-button theme-button">
+            <div class="icon-button-inner">
               <div data-theme="dark" class="fontello"></div>
               <div data-theme="light" class="fontello"></div>
             </div>
@@ -81,7 +81,13 @@
           {%- endif %}
         </div>
         {%- block sidebarextra %}{%- endblock %}
+        <button type="button" id="menu-hide-button" class="icon-button menu-button">
+          <div class="icon-button-inner">
+            <div class="fontello"></div>
+          </div>
+        </button>
       </div>
+      <script>typeof refreshSidebarWidth==="function"&&refreshSidebarWidth()</script>
       {%- endif %}
 {%- endmacro %}
 
@@ -169,22 +175,21 @@
       {%- if render_sidebar %}
         <div class="bodywrapper">
       {%- endif %}
-          <div class="body" role="main">
+          <div class="document-body" role="main">
             {% block body %} {% endblock %}
             <div class="clearer"></div>
           </div>
       {%- if render_sidebar %}
         </div>
       {%- endif %}
+        <button type="button" id="menu-show-button" class="icon-button menu-button">
+          <div class="icon-button-inner">
+            <div class="fontello"></div>
+          </div>
+        </button>
       </div>
   {%- endblock %}
 
-      <button type="button" id="menu-fold-button" >
-        <div class="menu-fold-button-inner">
-          <div data-menu-fold="true" class="fontello"></div>
-          <div data-menu-fold="false" class="fontello"></div>
-        </div>
-      </button>
     </div>
 {%- endblock %}
 

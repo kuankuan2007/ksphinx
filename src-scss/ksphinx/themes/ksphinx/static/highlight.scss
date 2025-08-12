@@ -1,0 +1,10 @@
+@use 'highlight-style/github-dark.scss' as *;
+@use 'highlight-style/github.scss' as *;
+
+html,
+html[data-theme='light'] {
+  @include highlight-style-github-light;
+}
+html[data-theme='dark'] {
+  @include highlight-style-github-dark;
+}

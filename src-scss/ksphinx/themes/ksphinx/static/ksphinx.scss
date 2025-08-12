@@ -1,0 +1,518 @@
+@use 'font.scss' as *;
+@use 'highlight.scss' as *;
+@use 'theme.scss' as *;
+
+// :root {
+//   @media screen and (max-width: 15cm) {
+//     font-size: 3.5mm;
+//   }
+//   @media screen and (min-width: 15cm) {
+//     font-size: 18px;
+//   }
+// }
+
+:root,
+body {
+  margin: 0;
+  padding: 0;
+  @include font-better-reading;
+}
+
+.sig,
+.sig-object,
+.sig-name,
+.headerlink,
+.field-list,
+.related-gap,
+pre,
+code {
+  @include font-monospaced;
+}
+a {
+  text-decoration: none;
+  @include useTheme {
+    color: getTheme('active-color');
+  }
+}
+body {
+  @include useTheme {
+    color: getTheme('color');
+    background: getTheme('background');
+  }
+}
+div.content {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+}
+div.document {
+  flex: 1 1 0;
+  display: flex;
+  column-gap: 1em;
+  height: 0;
+  width: 100%;
+  position: relative;
+  div.documentwrapper {
+    flex: 1 1 0;
+    overflow: auto;
+    padding: 1em;
+    position: relative;
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+      margin-left: -1rem;
+    }
+  }
+
+  div.sphinxsidebar {
+    top: 0;
+    margin: 0;
+    padding: 0;
+    flex: 0 0 auto;
+    border-right: solid 0.1em;
+    padding: 1em;
+    position: relative;
+    html[data-fullscreen-menu='true'] & {
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      border: none;
+      padding-top: 1em;
+    }
+    @include useTheme("[data-fullscreen-menu='true']") {
+      background: getTheme('background');
+    }
+    @include useTheme {
+      border-right-color: getTheme('color');
+    }
+    & .sphinxsidebarwrapper {
+      display: flex;
+      flex-direction: column;
+      row-gap: 1em;
+      height: 100%;
+      & > * {
+        flex: 0 0 auto;
+      }
+      & > .toc-tree {
+        flex: 1 1 0;
+        border: solid 0px;
+        border-top-width: 0.1em;
+        border-bottom-width: 0.1em;
+        display: flex;
+        flex-direction: column;
+        @include useTheme {
+          border-color: getTheme('color');
+        }
+        & > * {
+          flex: 0 0 auto;
+        }
+        & > .localtoc {
+          flex: 1 1 0;
+          overflow: auto;
+        }
+      }
+
+      div.top-line {
+        font-size: 1.6em;
+        font-weight: bold;
+        text-align: right;
+        display: flex;
+        justify-content: stretch;
+        align-items: center;
+        column-gap: 0.5em;
+      }
+      & > a {
+        text-decoration: none;
+        @include useTheme {
+          color: getTheme('color');
+        }
+      }
+      div.top-line {
+        .logo {
+          flex: 0 1 auto;
+          width: 2.5em;
+        }
+        div {
+          flex: 0 1 auto;
+          text-decoration: none;
+        }
+      }
+      h3 {
+        margin: 0.2em 0;
+      }
+    }
+
+    ul {
+      padding: 0;
+      margin: 0;
+      list-style: none;
+    }
+    ul ul {
+      list-style: unset;
+      margin-left: 2em;
+    }
+  }
+}
+
+html[data-menu-fold='true'] {
+  div.sphinxsidebar {
+    display: none;
+  }
+  div.documentwrapper {
+    padding-left: 2em;
+  }
+}
+
+div.related {
+  position: sticky;
+  top: 0;
+  padding: 0.5em 0.3em;
+  width: unset;
+  border-bottom: solid 0.1em;
+
+  @include useTheme {
+    border-bottom-color: getTheme('color');
+    background: getTheme('background');
+  }
+  & > div {
+    display: flex;
+    align-items: center;
+    column-gap: 1em;
+    & > .right {
+      margin-left: auto;
+      text-transform: capitalize;
+    }
+    & > ul {
+      list-style: none;
+      display: flex;
+      flex-direction: row;
+      column-gap: 0.2em;
+      margin: 0;
+      padding: 0;
+      overflow-x: auto;
+      * {
+        text-wrap: nowrap;
+        white-space: nowrap;
+      }
+    }
+  }
+}
+div.footer {
+  padding: 0.5em 0.3em;
+  border-top: solid 0.1em;
+  bottom: 0;
+  text-align: center;
+  font-size: 1em;
+  overflow-x: auto;
+  @include useTheme {
+    border-top-color: getTheme('color');
+  }
+  p {
+    margin: 0;
+    padding: 0;
+    text-wrap: nowrap;
+    white-space: nowrap;
+  }
+}
+
+form.search {
+  display: flex;
+  align-items: stretch;
+  border: solid 0.1em;
+  border-radius: 999999px;
+  overflow: hidden;
+  transition: 0.3s;
+
+  &.search-page-form {
+    font-size: 2em;
+    position: sticky;
+    top: 0;
+    @include useTheme {
+      filter: drop-shadow(0px 0.2em 0.25em getTheme('background'));
+    }
+  }
+  @include useTheme {
+    border-color: getTheme('color');
+    background: getTheme('background');
+  }
+  &:focus-within {
+    @include useTheme {
+      border-color: getTheme('active-color');
+    }
+  }
+  input,
+  button {
+    display: block;
+    outline: none;
+    border: none;
+    font-size: 1em;
+    margin: 0;
+    transition: 0.3s;
+  }
+  button {
+    padding: 0.1em 0.5em;
+    flex: 0 0 auto;
+    border-radius: 999999px;
+    @include useTheme {
+      background: getTheme('color');
+      color: getTheme('background');
+    }
+    &:hover,
+    &:focus-within {
+      @include useTheme {
+        background: getTheme('active-color');
+        color: getTheme('color');
+      }
+    }
+  }
+  input[type='search'] {
+    flex: 1 1 auto;
+    padding: 0 0 0 0.6em;
+    min-width: none;
+    max-width: none;
+    @include useTheme {
+      background: getTheme('background');
+      color: getTheme('color');
+    }
+  }
+}
+
+table {
+  padding: 0.5em;
+  @include useTheme {
+    border: solid 0.1em getTheme('color');
+    tr {
+      border: solid 0.1em getTheme('color');
+    }
+    * {
+      background: getTheme('background');
+      color: getTheme('color');
+    }
+  }
+}
+
+dt:target,
+span.highlighted {
+  border: solid 0.1em;
+  margin-inline-start: 1em;
+  background: unset;
+  @include useTheme {
+    border-color: getTheme('strong-color');
+  }
+}
+.search-page-form * {
+  font-size: 1.5em;
+  padding: 0.3em 0.5em;
+}
+button {
+  cursor: pointer;
+}
+.document-body {
+  width: unset;
+  max-width: unset;
+  min-width: 30em;
+}
+.headerlink {
+  margin-left: 0.2em;
+  opacity: 0.3;
+  transition: 0.3s;
+  @include useTheme {
+    color: getTheme('active-color');
+  }
+
+  &:hover,
+  &:active {
+    opacity: 1;
+    transform: scale(1.3);
+  }
+}
+::-webkit-scrollbar {
+  width: 0.5em;
+  height: 0.5em;
+  @include useTheme {
+    background: getTheme('background');
+  }
+}
+::-webkit-scrollbar-thumb {
+  @include useTheme {
+    background: getTheme('color');
+  }
+  border-radius: 0.5em;
+}
+#build-info-content {
+  .final {
+    display: flex;
+  }
+  p {
+    margin: 0;
+    padding: 0;
+  }
+  .info-name::after {
+    content: ':';
+  }
+  .info-name {
+    font-weight: bold;
+    margin-right: 0.5em;
+  }
+  .info-group {
+    margin-left: 2em;
+  }
+  ul {
+    margin: 0 0 0 2em;
+    padding: 0 0 0 1em;
+  }
+}
+button.icon-button {
+  display: block;
+  background: transparent;
+  border: none;
+  outline: none;
+  margin: none;
+  padding: none;
+  @include useTheme {
+    color: getTheme('color');
+    &:hover {
+      color: getTheme('active-color');
+    }
+  }
+  .icon-button-inner {
+    width: 1.3em;
+    height: 1.3em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    div {
+      inset: 0;
+      font-size: 1.5em;
+    }
+  }
+}
+button#menu-hide-button {
+  right: 0;
+}
+button#menu-show-button {
+  left: 0;
+}
+button.menu-button {
+  position: absolute;
+  top: 0;
+  z-index: 2;
+  margin: 0.3em;
+  font-size: 1.1em;
+}
+html[data-theme='dark'] button#theme-button div[data-theme='light'] {
+  display: none;
+}
+html[data-theme='light'] button#theme-button div[data-theme='dark'] {
+  display: none;
+}
+html[data-menu-fold='true'] {
+  button#menu-show-button {
+    display: block;
+  }
+  button#menu-hide-button {
+    display: none;
+  }
+}
+html[data-menu-fold='false'] {
+  button#menu-show-button {
+    display: none;
+  }
+  button#menu-hide-button {
+    display: show;
+  }
+}
+.fontello {
+  font-family: fontello;
+}
+pre {
+  position: relative;
+  @include useTheme {
+    background: getTheme('background');
+  }
+}
+pre code.hljs {
+  border-radius: 0.5em 0 0.5em 0.5em;
+}
+pre .code-copy-button {
+  position: absolute;
+  bottom: 100%;
+  right: 0;
+
+  border: none;
+  outline: none;
+  padding: 0.4em 1em;
+  margin: 0;
+  cursor: pointer;
+  font-size: 0.8em;
+  border-radius: 0.8em 0.8em 0 0;
+  transition: 0.3s;
+  @include useTheme {
+    color: getTheme('color');
+    background: getTheme('em-bg-color');
+  }
+}
+
+pre .code-copy-button:hover,
+pre .code-copy-button:active,
+pre.code-copy-button:focus {
+  font-size: 0.9em;
+  @include useTheme {
+    color: getTheme('background');
+    border-color: getTheme('background');
+    background: getTheme('active-color');
+  }
+}
+
+span.versionmodified {
+  font-weight: bold;
+  @include useTheme {
+    color: getTheme('strong-color');
+  }
+}
+div.versionchanged,
+div.versionadded,
+div.deprecated {
+  padding: 0.5em;
+  border-radius: 0.5em;
+  margin-block-start: 1em;
+  margin-block-end: 1em;
+  width: fit-content;
+  @include useTheme {
+    background: getTheme('em-bg-color');
+  }
+}
+dl div.versionchanged,
+dl div.versionadded,
+dl div.deprecated {
+  padding-inline-start: 1.5em;
+  text-indent: -1em;
+  margin-inline-start: -1.5em;
+}
+div.versionchanged p,
+div.versionadded p,
+div.deprecated p {
+  margin: 0;
+}
+.field-list dd.field-odd {
+  margin-inline-start: 0.5em;
+}
+dl.py {
+  margin-block-start: 2em;
+  margin-block-end: 2em;
+}
+p {
+  margin-block-end: 0.6em;
+  margin-block-start: 0.6em;
+}
+.sig-object {
+  padding-inline-start: 1.5em;
+  text-indent: -1.5em;
+  font-weight: bold;
+}

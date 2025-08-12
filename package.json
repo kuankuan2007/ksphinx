@@ -1,0 +1,27 @@
+{
+  "name": "ksphinx",
+  "version": "0.1.5",
+  "description": "A custom html theme for sphinx used in kuankuan2007's projects.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kuankuan2007/ksphinx.git"
+  },
+  "author": "kuankuan",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kuankuan2007/ksphinx/issues"
+  },
+  "homepage": "https://github.com/kuankuan2007/ksphinx#readme",
+  "devDependencies": {
+    "@types/sass": "^1.43.1",
+    "autoprefixer": "^10.4.21",
+    "cssnano": "^7.1.0",
+    "postcss": "^8.5.6",
+    "postcss-preset-env": "^10.2.4",
+    "sass": "^1.90.0"
+  }
+}

@@ -1,7 +1,9 @@
 {# Sphinx sidebar template: local table of contents. #}
 {%- if display_toc %}
-  <h3 class="toc-title">{{ _('Table of Contents') }}</h3>
-  <div class="localtoc">
-    {{ toc }}
+  <div class="toc-tree">
+    <h3 class="toc-title">{{ _('Table of Contents') }}</h3>
+    <div class="localtoc">
+      {{ toc }}
+    </div>
   </div>
 {%- endif %}

@@ -1,0 +1,1 @@
+throw new Error("ksphinx is not a JavaScript module. Please refer to the documentation for usage details.");

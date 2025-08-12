@@ -51,9 +51,7 @@
   font-weight: 300 700;
   font-style: normal;
 }
-body {
-  font-family: 'Fira Code', monospace;
-}
+
 @font-face {
   font-family: 'fontello';
   src: url('/_static/fontello/fontello.eot?43276788');
@@ -64,4 +62,11 @@ body {
        url('/_static/fontello/fontello.svg?43276788#fontello') format('svg');
   font-weight: normal;
   font-style: normal;
+}
+
+@mixin font-better-reading{
+  font-family: -apple-system, BlinkMacSystemFont, avenir next, avenir, segoe ui, helvetica neue, helvetica, Cantarell, Ubuntu, roboto, noto, arial, sans-serif;
+}
+@mixin font-monospaced{
+  font-family: 'Fira Code', monospace, sans-serif;
 }

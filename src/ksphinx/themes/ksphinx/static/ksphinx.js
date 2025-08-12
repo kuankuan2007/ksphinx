@@ -1,22 +1,28 @@
 const mediaMatch = window.matchMedia('(prefers-color-scheme: light)');
 let theme = mediaMatch.matches ? 'light' : 'dark';
-const widthMediaMatch = window.matchMedia('(max-width: 50em)');
+let widthMediaMatch = window.matchMedia('(max-width: 15cm)');
 let menuFold = widthMediaMatch.matches;
+let fullscreenMenu = false;
 function refreshTheme() {
-  document.body.dataset.theme = theme;
+  document.documentElement.dataset.theme = theme;
 }
 function refreshMenu() {
-  document.body.dataset.menuFold = menuFold;
+  document.documentElement.dataset.menuFold = menuFold;
+}
+function refreshFullscreenMenu() {
+  document.documentElement.dataset.fullscreenMenu = fullscreenMenu;
 }
 function initKsphinx() {
   refreshTheme();
   refreshMenu();
 }
-widthMediaMatch.addEventListener('change', () => {
+function onWidthMediaChange() {
   menuFold = widthMediaMatch.matches;
+  fullscreenMenu = widthMediaMatch.matches;
   refreshMenu();
-});
-
+  refreshFullscreenMenu();
+}
+widthMediaMatch.addEventListener('change', onWidthMediaChange);
 mediaMatch.addEventListener('change', () => {
   theme = mediaMatch.matches ? 'light' : 'dark';
   refreshTheme();
@@ -38,7 +44,7 @@ function createCopyButton(ele) {
   return button;
 }
 const copyText =
-  typeof navigator.clipboard !== 'undefined'
+  typeof navigator.clipboard.writeText === 'function'
     ? async (text) => {
         await navigator.clipboard.writeText(text);
       }
@@ -50,8 +56,21 @@ const copyText =
         document.execCommand('copy');
         document.body.removeChild(textarea);
       };
+function refreshSidebarWidth() {
+  const sidebar = document.querySelector('.sphinxsidebar');
+  if (!sidebar) {
+    return;
+  }
+  sidebar.style.setProperty('inset', 'unset');
+  sidebarWidth = sidebar.offsetWidth;
+  sidebar.style.setProperty('inset', '');
+  widthMediaMatch = window.matchMedia(`(max-width: ${sidebarWidth * 2}px)`);
+  widthMediaMatch.addEventListener('change', onWidthMediaChange);
+  onWidthMediaChange();
+}
 window.addEventListener('load', () => {
   initKsphinx();
+  refreshSidebarWidth();
   document.querySelectorAll('.highlight pre').forEach((ele) => {
     const codeEle = document.createElement('code');
     codeEle.innerHTML = ele.innerHTML;
@@ -60,20 +79,29 @@ window.addEventListener('load', () => {
   });
   hljs.highlightAll();
   themeButton = document.getElementById('theme-button');
-  menuFoldButton = document.getElementById('menu-fold-button');
+  menuButton = {
+    show: document.getElementById('menu-show-button'),
+    hide: document.getElementById('menu-hide-button'),
+  };
   if (themeButton) {
     themeButton.addEventListener('click', () => {
       theme = theme === 'light' ? 'dark' : 'light';
       refreshTheme();
     });
   }
-  if (menuFoldButton) {
-    menuFoldButton.addEventListener('click', () => {
-      menuFold = !menuFold;
+  if (menuButton.show) {
+    menuButton.show.addEventListener('click', () => {
+      menuFold = false;
       refreshMenu();
     });
   }
-  document.querySelectorAll('pre>code').forEach((ele) => {
+  if (menuButton.hide) {
+    menuButton.hide.addEventListener('click', () => {
+      menuFold = true;
+      refreshMenu();
+    });
+  }
+  document.querySelectorAll('pre > code').forEach((ele) => {
     const parent = ele.parentElement;
     parent && parent.appendChild(createCopyButton(ele));
   });

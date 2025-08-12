@@ -2,21 +2,8 @@ import sphinx.application
 import sphinx.domains.index
 from pathlib import Path
 
-__version__ = "unknown"
+from .__pkginfo__ import __version__, __pkgname__
 
-
-def __init_version():
-    global __version__
-    try:
-        assert "." not in __name__
-        from importlib.metadata import version
-
-        __version__ = version(__name__)
-    except:
-        pass
-
-
-__init_version()
 THEME_PATH = (Path(__file__).parent / "themes" / "ksphinx").resolve()
 
 
