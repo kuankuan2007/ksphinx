@@ -274,8 +274,8 @@ form.search {
   input[type='search'] {
     flex: 1 1 auto;
     padding: 0 0 0 0.6em;
-    min-width: none;
-    max-width: none;
+    min-width: 0;
+    max-width: unset;
     @include useTheme {
       background: getTheme('background');
       color: getTheme('color');
