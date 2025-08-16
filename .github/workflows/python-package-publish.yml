@@ -38,7 +38,7 @@ jobs:
           python -m pip install build
       - name: Call JS Before Build Hook
         run: |
-          node hooks/beforeBuild.mjs
+          npm run before-build
       - name: Build release distributions
         run: |
           python -m build
