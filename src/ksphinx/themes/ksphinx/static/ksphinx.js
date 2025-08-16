@@ -1,7 +1,9 @@
+'use strict';
+
 const mediaMatch = window.matchMedia('(prefers-color-scheme: light)');
 let theme = mediaMatch.matches ? 'light' : 'dark';
 let widthMediaMatch = window.matchMedia('(max-width: 15cm)');
-let menuFold = widthMediaMatch.matches;
+let menuFold = false;
 let fullscreenMenu = false;
 function refreshTheme() {
   document.documentElement.dataset.theme = theme;
@@ -61,8 +63,16 @@ function refreshSidebarWidth() {
   if (!sidebar) {
     return;
   }
-  sidebar.style.setProperty('inset', 'unset');
-  sidebarWidth = sidebar.offsetWidth;
+  fullscreenMenu = false;
+  menuFold = false;
+  refreshMenu();
+  refreshFullscreenMenu();
+
+  const sidebarWidth = sidebar.offsetWidth;
+  if (sidebarWidth === 0) {
+    console.warn('sidebar width is 0');
+    return;
+  }
   sidebar.style.setProperty('inset', '');
   widthMediaMatch = window.matchMedia(`(max-width: ${sidebarWidth * 2}px)`);
   widthMediaMatch.addEventListener('change', onWidthMediaChange);
@@ -78,11 +88,12 @@ window.addEventListener('load', () => {
     ele.appendChild(codeEle);
   });
   hljs.highlightAll();
-  themeButton = document.getElementById('theme-button');
-  menuButton = {
+  const themeButton = document.getElementById('theme-button');
+  const menuButton = {
     show: document.getElementById('menu-show-button'),
     hide: document.getElementById('menu-hide-button'),
   };
+  const fullscreenButton = document.getElementById('menu-fullscreen-button');
   if (themeButton) {
     themeButton.addEventListener('click', () => {
       theme = theme === 'light' ? 'dark' : 'light';
@@ -99,6 +110,14 @@ window.addEventListener('load', () => {
     menuButton.hide.addEventListener('click', () => {
       menuFold = true;
       refreshMenu();
+    });
+  }
+  if (fullscreenButton) {
+    fullscreenButton.addEventListener('click', () => {
+      menuFold = false;
+      fullscreenMenu = !fullscreenMenu;
+      refreshMenu();
+      refreshFullscreenMenu();
     });
   }
   document.querySelectorAll('pre > code').forEach((ele) => {

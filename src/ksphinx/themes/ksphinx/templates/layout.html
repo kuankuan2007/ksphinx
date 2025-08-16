@@ -43,8 +43,8 @@
         </ul>
           <button type="button" id="theme-button" class="icon-button theme-button">
             <div class="icon-button-inner">
-              <div data-theme="dark" class="fontello"></div>
-              <div data-theme="light" class="fontello"></div>
+              <div data-theme="dark" class="fontello">&#xE805;</div>
+              <div data-theme="light" class="fontello">&#xE803;</div>
             </div>
           </button>
       </div>
@@ -81,11 +81,19 @@
           {%- endif %}
         </div>
         {%- block sidebarextra %}{%- endblock %}
-        <button type="button" id="menu-hide-button" class="icon-button menu-button">
-          <div class="icon-button-inner">
-            <div class="fontello"></div>
-          </div>
-        </button>
+        <div class="sphinxsidebar-button-box button-box">
+          <button type="button" id="menu-fullscreen-button" class="icon-button menu-button">
+            <div class="icon-button-inner">
+              <div class="fontello" data-fullscreen-menu="true">&#xE801;</div>
+              <div class="fontello" data-fullscreen-menu="false">&#xE802;</div>
+            </div>
+          </button>
+          <button type="button" id="menu-hide-button" class="icon-button menu-button">
+            <div class="icon-button-inner">
+              <div class="fontello">&#xE800;</div>
+            </div>
+          </button>
+        </div>
       </div>
       <script>typeof refreshSidebarWidth==="function"&&refreshSidebarWidth()</script>
       {%- endif %}
@@ -184,7 +192,7 @@
       {%- endif %}
         <button type="button" id="menu-show-button" class="icon-button menu-button">
           <div class="icon-button-inner">
-            <div class="fontello"></div>
+            <div class="fontello">&#xE804;</div>
           </div>
         </button>
       </div>

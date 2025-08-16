@@ -4,7 +4,9 @@
   "description": "A custom html theme for sphinx used in kuankuan2007's projects.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "load-fontello": "node tools/load-fontello.mjs",
+    "before-build": "node hooks/beforeBuild.mjs"
   },
   "repository": {
     "type": "git",
@@ -19,6 +21,7 @@
   "devDependencies": {
     "@types/sass": "^1.43.1",
     "autoprefixer": "^10.4.21",
+    "compressing": "^2.0.0",
     "cssnano": "^7.1.0",
     "postcss": "^8.5.6",
     "postcss-preset-env": "^10.2.4",

@@ -316,7 +316,7 @@ button {
 .document-body {
   width: unset;
   max-width: unset;
-  min-width: 30em;
+  min-width: 20em;
 }
 .headerlink {
   margin-left: 0.2em;
@@ -373,8 +373,8 @@ button.icon-button {
   background: transparent;
   border: none;
   outline: none;
-  margin: none;
-  padding: none;
+  margin: 0;
+  padding: 0;
   @include useTheme {
     color: getTheme('color');
     &:hover {
@@ -393,23 +393,38 @@ button.icon-button {
     }
   }
 }
-button#menu-hide-button {
+.button-box {
+  display: flex;
+  row-gap: 0.5em;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+}
+.sphinxsidebar-button-box {
   right: 0;
+  top: 0;
+  margin: 0.3em;
 }
 button#menu-show-button {
+  position: absolute;
   left: 0;
+  top: 0;
+  margin: 0.3em;
 }
 button.menu-button {
-  position: absolute;
-  top: 0;
   z-index: 2;
-  margin: 0.3em;
   font-size: 1.1em;
 }
 html[data-theme='dark'] button#theme-button div[data-theme='light'] {
   display: none;
 }
 html[data-theme='light'] button#theme-button div[data-theme='dark'] {
+  display: none;
+}
+html[data-fullscreen-menu='true'] button#menu-fullscreen-button div[data-fullscreen-menu='false'] {
+  display: none;
+}
+html[data-fullscreen-menu='false'] button#menu-fullscreen-button div[data-fullscreen-menu='true'] {
   display: none;
 }
 html[data-menu-fold='true'] {
@@ -425,7 +440,7 @@ html[data-menu-fold='false'] {
     display: none;
   }
   button#menu-hide-button {
-    display: show;
+    display: block;
   }
 }
 .fontello {
