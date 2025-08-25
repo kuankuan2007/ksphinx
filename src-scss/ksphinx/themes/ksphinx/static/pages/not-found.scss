@@ -1,0 +1,33 @@
+@use '../theme.scss' as *;
+@use 'sass:color';
+
+#not-found-content {
+  margin-top: 1em;
+  border-radius: 1em;
+  padding: 1em;
+
+  .title-line {
+    text-align: center;
+
+    text-wrap: nowrap;
+    white-space: nowrap;
+
+    span.error-code {
+      font-size: 4em;
+      font-weight: bold;
+    }
+    span.error-message {
+      font-size: 2em;
+    }
+  }
+  .content-line {
+    font-size: 1.2em;
+    #not-found-page-url {
+      word-wrap: break-word;
+      word-break: break-all;
+    }
+  }
+  @include useTheme() {
+    background: color.mix(getTheme('color'), getTheme('background'), 10%);
+  }
+}

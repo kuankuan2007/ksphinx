@@ -13,6 +13,7 @@ def setup(app: sphinx.application.Sphinx):
     app.add_js_file("highlight.min.js")
     app.add_html_theme("ksphinx", str(THEME_PATH))
     app.config.html_additional_pages["build-info"] = "build-info.html"
+    app.config.html_additional_pages["404"] = "404.html"
     app.config.html_static_path.append(str(THEME_PATH / "static"))
     app.config.templates_path.append(str(THEME_PATH / "templates"))
     app.config.html_context["ksphinx_version"] = __version__

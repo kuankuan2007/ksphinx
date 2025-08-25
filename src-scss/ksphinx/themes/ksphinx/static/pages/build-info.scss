@@ -1,0 +1,23 @@
+#build-info-content {
+  .final {
+    display: flex;
+  }
+  p {
+    margin: 0;
+    padding: 0;
+  }
+  .info-name::after {
+    content: ':';
+  }
+  .info-name {
+    font-weight: bold;
+    margin-right: 0.5em;
+  }
+  .info-group {
+    margin-left: 2em;
+  }
+  ul {
+    margin: 0 0 0 2em;
+    padding: 0 0 0 1em;
+  }
+}

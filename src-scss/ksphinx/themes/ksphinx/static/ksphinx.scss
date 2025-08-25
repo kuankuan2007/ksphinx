@@ -1,6 +1,7 @@
 @use 'font.scss' as *;
 @use 'highlight.scss' as *;
 @use 'theme.scss' as *;
+@use 'pages.scss' as *;
 
 // :root {
 //   @media screen and (max-width: 15cm) {
@@ -345,29 +346,7 @@ button {
   }
   border-radius: 0.5em;
 }
-#build-info-content {
-  .final {
-    display: flex;
-  }
-  p {
-    margin: 0;
-    padding: 0;
-  }
-  .info-name::after {
-    content: ':';
-  }
-  .info-name {
-    font-weight: bold;
-    margin-right: 0.5em;
-  }
-  .info-group {
-    margin-left: 2em;
-  }
-  ul {
-    margin: 0 0 0 2em;
-    padding: 0 0 0 1em;
-  }
-}
+
 button.icon-button {
   display: block;
   background: transparent;

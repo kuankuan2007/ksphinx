@@ -1,0 +1,23 @@
+{# Template for the build info page. #} {%- extends "layout.html" %} {% set title = _('Page Not
+Found')%} {%- block scripts %} {{ super() }}
+<script src="{{ pathto('_static/not-found.js', 1) }}"></script>
+{%- endblock %} {% block body %}
+<h1 id="404-title" class="title">{{ _('Page Not Found') }}</h1>
+{% block scriptwarning %}
+<noscript>
+  <div class="admonition warning">
+    <p>{% trans %}Please activate JavaScript to enable the search functionality.{% endtrans %}</p>
+  </div>
+</noscript>
+{% endblock %}
+
+<div id="not-found-content">
+  <p class="title-line">
+    <span class="error-code">404</span><span class="error-message"> Not Found</span>
+  </p>
+  <p class="content-line">
+    The page you are looking for does not exist.<br />URL: <span id="not-found-page-url"></span>
+  </p>
+</div>
+
+{% endblock %}
