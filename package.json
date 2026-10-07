@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "load-fontello": "node tools/load-fontello.mjs",
+    "load-fontello": "load-fontello",
     "before-build": "node hooks/beforeBuild.mjs"
   },
   "repository": {
@@ -19,12 +19,14 @@
   },
   "homepage": "https://github.com/kuankuan2007/ksphinx#readme",
   "devDependencies": {
-    "@types/sass": "^1.43.1",
-    "autoprefixer": "^10.4.21",
-    "compressing": "^2.0.0",
-    "cssnano": "^7.1.0",
-    "postcss": "^8.5.6",
-    "postcss-preset-env": "^10.2.4",
-    "sass": "^1.90.0"
-  }
+    "@kuankuan/assist-2026": "0.1.18",
+    "@types/sass": "^1.45.0",
+    "autoprefixer": "^10.6.1",
+    "compressing": "^2.1.3",
+    "cssnano": "^9.3.2",
+    "postcss": "^8.5.29",
+    "postcss-preset-env": "^11.6.1",
+    "sass": "^1.105.1"
+  },
+  "packageManager": "pnpm@12.4.2"
 }
