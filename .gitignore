@@ -3,3 +3,4 @@ dist/
 __pycache__/
 node_modules/
 src/**/*.css
+venv/

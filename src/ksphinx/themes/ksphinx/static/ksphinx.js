@@ -1,7 +1,9 @@
 'use strict';
 
-const mediaMatch = window.matchMedia('(prefers-color-scheme: light)');
-let theme = mediaMatch.matches ? 'light' : 'dark';
+const themeMediaMatch = window.matchMedia('(prefers-color-scheme: light)');
+const reducedMotionMediaMatch = window.matchMedia('(prefers-reduced-motion: reduce)');
+
+let theme = themeMediaMatch.matches ? 'light' : 'dark';
 let widthMediaMatch = window.matchMedia('(max-width: 15cm)');
 let menuFold = false;
 let fullscreenMenu = false;
@@ -11,12 +13,18 @@ function refreshTheme() {
 function refreshMenu() {
   document.documentElement.dataset.menuFold = menuFold;
 }
+function refreshMotionReduced() {
+  document.documentElement.dataset.motion = reducedMotionMediaMatch.matches
+    ? 'reduce'
+    : 'no-preference';
+}
 function refreshFullscreenMenu() {
   document.documentElement.dataset.fullscreenMenu = fullscreenMenu;
 }
 function initKsphinx() {
   refreshTheme();
   refreshMenu();
+  refreshMotionReduced();
 }
 function onWidthMediaChange() {
   menuFold = widthMediaMatch.matches;
@@ -25,9 +33,12 @@ function onWidthMediaChange() {
   refreshFullscreenMenu();
 }
 widthMediaMatch.addEventListener('change', onWidthMediaChange);
-mediaMatch.addEventListener('change', () => {
-  theme = mediaMatch.matches ? 'light' : 'dark';
+themeMediaMatch.addEventListener('change', () => {
+  theme = themeMediaMatch.matches ? 'light' : 'dark';
   refreshTheme();
+});
+reducedMotionMediaMatch.addEventListener('change', () => {
+  refreshMotionReduced();
 });
 function createCopyButton(ele) {
   const button = document.createElement('button');

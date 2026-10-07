@@ -1,4 +1,4 @@
-@use '../theme.scss' as *;
+@use '../theme.scss';
 @use 'sass:color';
 
 #not-found-content {
@@ -27,7 +27,7 @@
       word-break: break-all;
     }
   }
-  @include useTheme() {
-    background: color.mix(getTheme('color'), getTheme('background'), 10%);
+  @include theme.use() {
+    background: color.mix(theme.get('color'), theme.get('background'), 10%);
   }
 }

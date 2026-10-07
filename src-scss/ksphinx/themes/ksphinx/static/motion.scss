@@ -1,0 +1,21 @@
+@use '../../../../../node_modules/@kuankuan/assist-2026/styles/motion.scss' as _motion;
+
+@mixin use() {
+  @include _motion.use {
+    @content;
+  }
+}
+@mixin transition($transition...) {
+  @include _motion.transition($transition...){
+    @content;
+  }
+}
+
+@function selecter($motion){
+  @return _motion.selecter($motion);
+}
+@mixin select($motion, $anythingElse: '') {
+  @include _motion.select($motion, $anythingElse) {
+    @content;
+  }
+}

@@ -1,8 +1,8 @@
 @use 'font.scss' as *;
 @use 'highlight.scss' as *;
-@use 'theme.scss' as *;
+@use 'theme.scss';
 @use 'pages.scss' as *;
-
+@use 'motion.scss';
 // :root {
 //   @media screen and (max-width: 15cm) {
 //     font-size: 3.5mm;
@@ -31,14 +31,76 @@ code {
 }
 a {
   text-decoration: none;
-  @include useTheme {
-    color: getTheme('active-color');
+  background: none;
+  @include motion.transition(0.3s 0s, background-position 0s 0s);
+  @include theme.use {
+    $color: theme.mix('active-color', 'color', 80%);
+    color: $color;
+  }
+  &:hover {
+    @include theme.use {
+      $color: theme.mix('active-color', 'color', 40%);
+      color: $color;
+    }
+  }
+  &:focus {
+    outline: none;
+    @include theme.use {
+      $color: theme.mix('active-color', 'background', 70%);
+      color: $color;
+    }
+  }
+  &:active {
+    @include theme.use {
+      $color: theme.mix('active-color', 'color', 20%);
+      color: $color;
+    }
+  }
+}
+a.bottom-line,
+.link-bottom-line a {
+  background-position: right bottom;
+  background-size: 0% 2px;
+  background-repeat: no-repeat;
+  @include theme.use {
+    $color: theme.mix('active-color', 'color', 80%);
+    color: $color;
+    background-image: linear-gradient(90deg, $color, $color);
+  }
+  &:hover {
+    @include theme.use {
+      $color: theme.mix('active-color', 'color', 40%);
+      color: $color;
+      background-image: linear-gradient(90deg, $color, $color);
+    }
+  }
+  &:focus {
+    outline: none;
+    @include theme.use {
+      $color: theme.mix('active-color', 'background', 70%);
+      color: $color;
+      background-image: linear-gradient(90deg, $color, $color);
+    }
+  }
+  &:active {
+    @include theme.use {
+      $color: theme.mix('active-color', 'color', 20%);
+      color: $color;
+      background-image: linear-gradient(90deg, $color, $color);
+    }
+  }
+
+  &:hover,
+  &:focus,
+  &:active {
+    background-size: 100% 2px;
+    background-position: left bottom;
   }
 }
 body {
-  @include useTheme {
-    color: getTheme('color');
-    background: getTheme('background');
+  @include theme.use {
+    color: theme.get('color');
+    background: theme.get('background');
   }
 }
 div.content {
@@ -86,11 +148,11 @@ div.document {
       border: none;
       padding-top: 1em;
     }
-    @include useTheme("[data-fullscreen-menu='true']") {
-      background: getTheme('background');
+    @include theme.use("[data-fullscreen-menu='true']") {
+      background: theme.get('background');
     }
-    @include useTheme {
-      border-right-color: getTheme('color');
+    @include theme.use {
+      border-right-color: theme.get('color');
     }
     & .sphinxsidebarwrapper {
       display: flex;
@@ -107,8 +169,8 @@ div.document {
         border-bottom-width: 0.1em;
         display: flex;
         flex-direction: column;
-        @include useTheme {
-          border-color: getTheme('color');
+        @include theme.use {
+          border-color: theme.get('color');
         }
         & > * {
           flex: 0 0 auto;
@@ -130,8 +192,8 @@ div.document {
       }
       & > a {
         text-decoration: none;
-        @include useTheme {
-          color: getTheme('color');
+        @include theme.use {
+          color: theme.get('color');
         }
       }
       div.top-line {
@@ -177,9 +239,9 @@ div.related {
   width: unset;
   border-bottom: solid 0.1em;
 
-  @include useTheme {
-    border-bottom-color: getTheme('color');
-    background: getTheme('background');
+  @include theme.use {
+    border-bottom-color: theme.get('color');
+    background: theme.get('background');
   }
   & > div {
     display: flex;
@@ -211,8 +273,8 @@ div.footer {
   text-align: center;
   font-size: 1em;
   overflow-x: auto;
-  @include useTheme {
-    border-top-color: getTheme('color');
+  @include theme.use {
+    border-top-color: theme.get('color');
   }
   p {
     margin: 0;
@@ -228,23 +290,23 @@ form.search {
   border: solid 0.1em;
   border-radius: 999999px;
   overflow: hidden;
-  transition: 0.3s;
+  @include motion.transition(0.3s);
 
   &.search-page-form {
     font-size: 2em;
     position: sticky;
     top: 0;
-    @include useTheme {
-      filter: drop-shadow(0px 0.2em 0.25em getTheme('background'));
+    @include theme.use {
+      filter: drop-shadow(0px 0.2em 0.25em theme.get('background'));
     }
   }
-  @include useTheme {
-    border-color: getTheme('color');
-    background: getTheme('background');
+  @include theme.use {
+    border-color: theme.get('color');
+    background: theme.get('background');
   }
   &:focus-within {
-    @include useTheme {
-      border-color: getTheme('active-color');
+    @include theme.use {
+      border-color: theme.get('active-color');
     }
   }
   input,
@@ -254,21 +316,21 @@ form.search {
     border: none;
     font-size: 1em;
     margin: 0;
-    transition: 0.3s;
+    @include motion.transition(0.3s);
   }
   button {
     padding: 0.1em 0.5em;
     flex: 0 0 auto;
     border-radius: 999999px;
-    @include useTheme {
-      background: getTheme('color');
-      color: getTheme('background');
+    @include theme.use {
+      background: theme.get('color');
+      color: theme.get('background');
     }
     &:hover,
     &:focus-within {
-      @include useTheme {
-        background: getTheme('active-color');
-        color: getTheme('color');
+      @include theme.use {
+        background: theme.get('active-color');
+        color: theme.get('color');
       }
     }
   }
@@ -277,23 +339,23 @@ form.search {
     padding: 0 0 0 0.6em;
     min-width: 0;
     max-width: unset;
-    @include useTheme {
-      background: getTheme('background');
-      color: getTheme('color');
+    @include theme.use {
+      background: theme.get('background');
+      color: theme.get('color');
     }
   }
 }
 
 table {
   padding: 0.5em;
-  @include useTheme {
-    border: solid 0.1em getTheme('color');
+  @include theme.use {
+    border: solid 0.1em theme.get('color');
     tr {
-      border: solid 0.1em getTheme('color');
+      border: solid 0.1em theme.get('color');
     }
     * {
-      background: getTheme('background');
-      color: getTheme('color');
+      background: theme.get('background');
+      color: theme.get('color');
     }
   }
 }
@@ -303,8 +365,8 @@ span.highlighted {
   border: solid 0.1em;
   margin-inline-start: 1em;
   background: unset;
-  @include useTheme {
-    border-color: getTheme('strong-color');
+  @include theme.use {
+    border-color: theme.get('strong-color');
   }
 }
 .search-page-form * {
@@ -322,9 +384,9 @@ button {
 .headerlink {
   margin-left: 0.2em;
   opacity: 0.3;
-  transition: 0.3s;
-  @include useTheme {
-    color: getTheme('active-color');
+  @include motion.transition(0.3s);
+  @include theme.use {
+    color: theme.get('active-color');
   }
 
   &:hover,
@@ -336,13 +398,13 @@ button {
 ::-webkit-scrollbar {
   width: 0.5em;
   height: 0.5em;
-  @include useTheme {
-    background: getTheme('background');
+  @include theme.use {
+    background: theme.get('background');
   }
 }
 ::-webkit-scrollbar-thumb {
-  @include useTheme {
-    background: getTheme('color');
+  @include theme.use {
+    background: theme.get('color');
   }
   border-radius: 0.5em;
 }
@@ -354,10 +416,10 @@ button.icon-button {
   outline: none;
   margin: 0;
   padding: 0;
-  @include useTheme {
-    color: getTheme('color');
+  @include theme.use {
+    color: theme.get('color');
     &:hover {
-      color: getTheme('active-color');
+      color: theme.get('active-color');
     }
   }
   .icon-button-inner {
@@ -427,8 +489,8 @@ html[data-menu-fold='false'] {
 }
 pre {
   position: relative;
-  @include useTheme {
-    background: getTheme('background');
+  @include theme.use {
+    background: theme.get('background');
   }
 }
 pre code.hljs {
@@ -446,10 +508,10 @@ pre .code-copy-button {
   cursor: pointer;
   font-size: 0.8em;
   border-radius: 0.8em 0.8em 0 0;
-  transition: 0.3s;
-  @include useTheme {
-    color: getTheme('color');
-    background: getTheme('em-bg-color');
+  @include motion.transition(0.3s);
+  @include theme.use {
+    color: theme.get('color');
+    background: theme.get('em-bg-color');
   }
 }
 
@@ -457,17 +519,17 @@ pre .code-copy-button:hover,
 pre .code-copy-button:active,
 pre.code-copy-button:focus {
   font-size: 0.9em;
-  @include useTheme {
-    color: getTheme('background');
-    border-color: getTheme('background');
-    background: getTheme('active-color');
+  @include theme.use {
+    color: theme.get('background');
+    border-color: theme.get('background');
+    background: theme.get('active-color');
   }
 }
 
 span.versionmodified {
   font-weight: bold;
-  @include useTheme {
-    color: getTheme('strong-color');
+  @include theme.use {
+    color: theme.get('strong-color');
   }
 }
 div.versionchanged,
@@ -478,8 +540,8 @@ div.deprecated {
   margin-block-start: 1em;
   margin-block-end: 1em;
   width: fit-content;
-  @include useTheme {
-    background: getTheme('em-bg-color');
+  @include theme.use {
+    background: theme.get('em-bg-color');
   }
 }
 dl div.versionchanged,
