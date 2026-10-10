@@ -180,23 +180,27 @@
   {%- block sidebar2 %}{{ sidebar() }}{% endblock %}
 
   {%- block document %}
-      <div class="documentwrapper">
-      {%- if render_sidebar %}
-        <div class="bodywrapper">
-      {%- endif %}
-          <div class="document-body" role="main">
-            {% block body %} {% endblock %}
-            <div class="clearer"></div>
-          </div>
-      {%- if render_sidebar %}
+  <div class="documentwrapper-box">
+      <button type="button" id="menu-show-button" class="icon-button menu-button">
+        <div class="icon-button-inner">
+          <div class="fontello">&#xE804;</div>
         </div>
-      {%- endif %}
-        <button type="button" id="menu-show-button" class="icon-button menu-button">
-          <div class="icon-button-inner">
-            <div class="fontello">&#xE804;</div>
-          </div>
-        </button>
+      </button>
+      <div class="documentwrapper">
+        <div class="bodywrapper-box">
+          {%- if render_sidebar %}
+            <div class="bodywrapper">
+          {%- endif %}
+              <div class="document-body" role="main">
+                {% block body %} {% endblock %}
+                <div class="clearer"></div>
+              </div>
+          {%- if render_sidebar %}
+            </div>
+          {%- endif %}
+        </div>
       </div>
+  </div>
   {%- endblock %}
 
     </div>

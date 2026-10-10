@@ -113,23 +113,29 @@ div.content {
 div.document {
   flex: 1 1 0;
   display: flex;
-  column-gap: 1em;
   height: 0;
   width: 100%;
   position: relative;
-  div.documentwrapper {
+  div.documentwrapper-box {
     flex: 1 1 0;
-    overflow: auto;
-    padding: 1em;
     position: relative;
 
-    h1,
-    h2,
-    h3,
-    h4,
-    h5,
-    h6 {
-      margin-left: -1rem;
+    div.documentwrapper {
+      position: absolute;
+      inset: 0;
+      overflow: auto;
+      height: 100%;
+      div.bodywrapper-box {
+        padding: 1.5em;
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
+          margin-left: -1rem;
+        }
+      }
     }
   }
 
@@ -139,7 +145,7 @@ div.document {
     padding: 0;
     flex: 0 0 auto;
     border-right: solid 0.1em;
-    padding: 1em;
+    padding: 1em 0;
     position: relative;
     html[data-fullscreen-menu='true'] & {
       position: absolute;
@@ -161,6 +167,7 @@ div.document {
       height: 100%;
       & > * {
         flex: 0 0 auto;
+        padding: 0 1em;
       }
       & > .toc-tree {
         flex: 1 1 0;
@@ -169,15 +176,24 @@ div.document {
         border-bottom-width: 0.1em;
         display: flex;
         flex-direction: column;
+        overflow: auto;
         @include theme.use {
-          border-color: theme.get('color');
+          border-color: theme.mix('color', 'background', 50%);
         }
         & > * {
           flex: 0 0 auto;
         }
         & > .localtoc {
           flex: 1 1 0;
-          overflow: auto;
+        }
+        & > .toc-title {
+          position: sticky;
+          top: 0;
+          margin: 0;
+          padding: 0.1em 0;
+          @include theme.use {
+            background: theme.get('background');
+          }
         }
       }
 
@@ -479,6 +495,9 @@ pre {
   @include theme.use {
     background: theme.get('background');
   }
+}
+pre > code {
+  overflow: auto;
 }
 pre code.hljs {
   border-radius: 0.5em 0 0.5em 0.5em;
