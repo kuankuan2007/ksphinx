@@ -1,6 +1,6 @@
 {
   "name": "ksphinx",
-  "version": "0.1.5",
+  "version": "0.3.0-post",
   "description": "A custom html theme for sphinx used in kuankuan2007's projects.",
   "main": "index.js",
   "scripts": {
