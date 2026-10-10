@@ -395,19 +395,6 @@ button {
     transform: scale(1.3);
   }
 }
-::-webkit-scrollbar {
-  width: 0.5em;
-  height: 0.5em;
-  @include theme.use {
-    background: theme.get('background');
-  }
-}
-::-webkit-scrollbar-thumb {
-  @include theme.use {
-    background: theme.get('color');
-  }
-  border-radius: 0.5em;
-}
 
 button.icon-button {
   display: block;
