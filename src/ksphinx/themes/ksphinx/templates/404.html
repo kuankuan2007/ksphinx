@@ -1,6 +1,6 @@
 {# Template for the build info page. #} {%- extends "layout.html" %} {% set title = _('Page Not
 Found')%} {%- block scripts %} {{ super() }}
-<script src="{{ pathto('_static/not-found.js', 1) }}"></script>
+<script src="{{ pathto('_static/notFound.js', 1) }}"></script>
 {%- endblock %} {% block body %}
 <h1 id="404-title" class="title">{{ _('Page Not Found') }}</h1>
 {% block scriptwarning %}

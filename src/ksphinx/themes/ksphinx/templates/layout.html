@@ -95,7 +95,7 @@
           </button>
         </div>
       </div>
-      <script>typeof refreshSidebarWidth==="function"&&refreshSidebarWidth()</script>
+      <script>typeof window.refreshSidebarWidth==="function"?window.refreshSidebarWidth():console.log("refreshSidebarWidth not available")</script>
       {%- endif %}
 {%- endmacro %}
 
@@ -170,7 +170,7 @@
 {%- block extrahead %} {% endblock %}
   </head>
   {%- block body_tag %}<body>{% endblock %}
-    <script>typeof initKsphinx==="function"&&initKsphinx()</script>
+    <script>typeof window.initKsphinxMedia==="function"?window.initKsphinxMedia():console.log("initKsphinxMedia not available")</script>
 {%- block header %}{% endblock %}
 <div class="content">
 {%- block relbar1 %}{{ relbar() }}{% endblock %}
